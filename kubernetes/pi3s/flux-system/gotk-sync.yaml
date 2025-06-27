@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: http://100.83.169.45:3000/lag/pi3s.git
+  url: http://ts-gitea-talos-c67ln.tailscale.svc.cluster.local:3000/lag/pi3s.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
