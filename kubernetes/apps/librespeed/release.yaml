@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bjw-s-labs
-        namespace: flux-system
       interval: 30m
   targetNamespace: librespeed
   install:
