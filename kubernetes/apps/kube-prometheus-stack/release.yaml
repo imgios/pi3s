@@ -26,6 +26,6 @@ spec:
     grafana:
       ingress:
         enabled: true
-	ingressClassName: traefik
-	hosts:
-  	  - grafana.homelab.local
+        ingressClassName: traefik
+        hosts:
+          - grafana.homelab.local
