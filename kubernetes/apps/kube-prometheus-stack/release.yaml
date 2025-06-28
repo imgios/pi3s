@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
 spec:
+  dependsOn:
+    - name: longhorn
   interval: 30m
   releaseName: monitoring
   chart:

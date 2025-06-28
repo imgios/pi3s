@@ -5,6 +5,3 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-spec:
-  dependsOn:
-    - name: infrastructure
