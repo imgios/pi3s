@@ -16,3 +16,6 @@ spec:
       className: traefik
       hosts:
         - host: podinfo.homelab.local
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
