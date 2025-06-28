@@ -9,8 +9,8 @@ Mono repository for the <kbd>LAG Cloud</kbd>'s edge cluster, which is built usin
 
 | Device | OS Disk Size | Data Disk Size | Ram | OS | Function |
 |:-------|:-------------|:---------------|:---:|:--:|:--------:|
-| Raspberry Pi 4 | 128GB | 500GB (SSD) (Longhorn) | 8GB | DietPi | k3s control-plane |
-| Raspberry Pi 4 | 128GB | / | 8GB | DietPi | k3s worker |
+| Raspberry Pi 4 | 128GB | 500GB (SSD) (Longhorn) | 8GB | DietPi | <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/refs/heads/master/logo/logo.png" width="16" height="16"> k3s control-plane |
+| Raspberry Pi 4 | 128GB | / | 8GB | DietPi | <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/refs/heads/master/logo/logo.png" width="16" height="16"> k3s worker |
 | Mikrotik hEX PoE | / | / | / | RouterOS | Switch (temp.) |
 
 ## 📁 Structure
