@@ -15,6 +15,13 @@ spec:
         namespace: flux-system
       interval: 30m
   targetNamespace: librespeed
+  install:
+    createNamespace: true
+    remediation:
+      retries: 10
+  upgrade:
+    remediation:
+      retries: 10
   values:
     fullnameOverride: librespeed
     defaultPodOptions:
