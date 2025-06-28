@@ -5,6 +5,7 @@ metadata:
 spec:
   dependsOn:
     - name: longhorn
+      namespace: longhorn-system
   interval: 30m
   releaseName: monitoring
   chart:
