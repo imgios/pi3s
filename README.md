@@ -12,3 +12,12 @@ Mono repository for the <kbd>LAG Cloud</kbd>'s edge cluster, which is built usin
 | Raspberry Pi 4 | 128GB | 500GB (SSD) (Longhorn) | 8GB | DietPi | k3s control-plane |
 | Raspberry Pi 4 | 128GB | / | 8GB | DietPi | k3s worker |
 | Mikrotik hEX PoE | / | / | / | RouterOS | Switch (temp.) |
+
+## 📁 Structure
+
+The project repository is structured as follow:
+
+- ☸️ `kubernetes`: this directory is the Flux baseline and reflects the cluster desired state.
+- 🛠️ `infrastructure`: this directory contains the assets to provision and support the infrastructure using code.
+
+The project structure is still in development and may be subject to changes or additions.
