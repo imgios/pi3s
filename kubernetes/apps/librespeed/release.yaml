@@ -57,7 +57,7 @@ spec:
                 memory: 50Mi
               limits:
                 memory: 100Mi
-     service:
+    service:
       librespeed:
         controller: librespeed
         ports:
