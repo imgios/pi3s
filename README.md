@@ -21,3 +21,8 @@ The project repository is structured as follow:
 - 🛠️ `infrastructure`: this directory contains the assets to provision and support the infrastructure using code.
 
 The project structure is still in development and may be subject to changes or additions.
+
+## Acknowledgments
+
+- Kubernetes icons by [Kubernetes](https://github.com/kubernetes)
+- Router icon by [aci686/Network-Icons-SVG](https://github.com/aci686/Network-Icons-SVG)
