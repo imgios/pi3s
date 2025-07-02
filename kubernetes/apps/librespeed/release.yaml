@@ -74,3 +74,6 @@ spec:
                 service:
                   identifier: librespeed
                   port: http
+        tls:
+          - hosts:
+            - speed
