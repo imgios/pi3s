@@ -66,9 +66,9 @@ spec:
     ingress:
       librespeed:
         enabled: true
-        className: traefik
+        className: tailscale
         hosts:
-          - host: speed.homelab.local
+          - host: speed
             paths:
               - path: /
                 service:
