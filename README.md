@@ -12,6 +12,7 @@ Mono repository for the <kbd>HBK Private Cloud</kbd>'s edge cluster, which is bu
 | Raspberry Pi 4 | 128GB | 500GB (SSD) (Longhorn) | 8GB | DietPi | <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/refs/heads/master/logo/logo.png" width="16" height="16"> k3s control-plane |
 | Raspberry Pi 4 | 128GB | / | 8GB | DietPi | <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/refs/heads/master/logo/logo.png" width="16" height="16"> k3s worker |
 | Mikrotik hEX PoE | 16MB | / | 128MB | RouterOS | <img src="https://raw.githubusercontent.com/aci686/Network-Icons-SVG/refs/heads/master/generic-router-square-mono.svg" width="16" height="16"> Switch (temp.) |
+| D-Link DSL-2750B | / | / | / | / | <img src="https://github.com/aci686/Network-Icons-SVG/blob/master/cloud-v1.svg" width="16" height="16"> Access Point |
 
 ## 📁 Structure
 
