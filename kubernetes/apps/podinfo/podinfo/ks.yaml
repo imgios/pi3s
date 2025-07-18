@@ -19,6 +19,6 @@ spec:
     name: flux-system
     namespace: flux-system
   path: ./kubernetes/apps/podinfo/podinfo/app
-  targetNamespace: *namespace
+  #targetNamespace: *namespace
   prune: true
   timeout: 5m0s
