@@ -2,14 +2,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure
+  name: infra-controllers
   namespace: flux-system
 spec:
   interval: 10m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/infrastructure
+  path: ./kubernetes/infrastructure/controllers
   prune: true
   wait: true
   timeout: 5m0s
@@ -17,6 +17,38 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  patches:
+    # Add Sops decryption to child Kustomizations
+    - patch: |-
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
+        metadata:
+          name: not-used
+        spec:
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-age
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-configs
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infra-controllers
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/infrastructure/configs
+  prune: true
   patches:
     # Add Sops decryption to child Kustomizations
     - patch: |-
