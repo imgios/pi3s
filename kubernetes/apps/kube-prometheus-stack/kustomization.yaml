@@ -6,3 +6,5 @@ resources:
   - repository.yaml
   - release.yaml
   - grafana-tailscale-ingress.yaml
+  - alertmanager-telegram.yaml
+  - telegram-bot-secret.yaml
