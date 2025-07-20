@@ -30,8 +30,3 @@ spec:
         ingressClassName: traefik
         hosts:
           - grafana.homelab.local
-    alertmanager:
-      alertmanagerSpec:
-        alertmanagerConfigSelector:
-          matchLabels:
-            alertmanagerConfig: alertmanager-telegram
