@@ -33,7 +33,7 @@ spec:
     alertmanager:
       templateFiles:
         telegram.tmpl: |-
-          {{ define "telegram.default.message" }}
+          {{ define "telegram.homelab.message" }}
           {{- if eq .Status "firing" -}}
               {{- if eq .CommonLabels.severity "critical" -}}
                   🔴 Alert: {{ .CommonLabels.alertname }}
