@@ -35,5 +35,3 @@ spec:
         alertmanagerConfigSelector:
           matchLabels:
             alertmanagerConfig: alertmanager-telegram
-        alertmanagerConfigMatcherStrategy:
-          type: None
