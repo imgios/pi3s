@@ -3,7 +3,7 @@
     <code>pi3s</code>
 </h3>
 
-Mono repository for the `arm` homelab cluster, which is built using Raspberry <i><b>Pi</b></i>'s and k<i><b>3s</b></i>. I try to adhere to GitOps methodologies using tools such as [Flux](https://fluxcd.io/), [Git(ea)](https://about.gitea.com/) and [K3s](https://k3s.io/).
+Mono repository for the `arm` homelab cluster, which is built using Raspberry <i><b>Pi</b></i>'s and k<i><b>3s</b></i>. I try to adhere to GitOps methodologies using tools such as [Flux ↗](https://fluxcd.io/), [Git(ea) ↗](https://about.gitea.com/) and [K3s ↗](https://k3s.io/).
 
 ## 🖥️ Hardware
 
@@ -25,5 +25,5 @@ The project structure is still in development and may be subject to changes or a
 
 ## Acknowledgments
 
-- Kubernetes icons by [Kubernetes](https://github.com/kubernetes)
-- Router icon by [aci686/Network-Icons-SVG](https://github.com/aci686/Network-Icons-SVG)
+- Kubernetes icons by [Kubernetes ↗](https://github.com/kubernetes)
+- Router icon by [aci686/Network-Icons-SVG ↗](https://github.com/aci686/Network-Icons-SVG)
