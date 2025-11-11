@@ -18,7 +18,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: ./kubernetes/apps/podinfo/podinfo/app
+  path: ./kubernetes/apps/.template/podinfo/app
   targetNamespace: *namespace
   prune: true
   timeout: 5m0s
