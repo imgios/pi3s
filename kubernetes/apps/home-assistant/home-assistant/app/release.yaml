@@ -72,7 +72,7 @@ spec:
         enabled: true
         className: traefik
         annotations:
-          cert-manager.io/issuer: "homelab-ca-issuer"
+          cert-manager.io/cluster-issuer: "homelab-ca-issuer"
         hosts:
           - host: hass.homelab.local
             paths:
