@@ -18,7 +18,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: ./kubernetes/apps/.template/home-assistant/app
+  path: ./kubernetes/apps/home-assistant/home-assistant/app
   targetNamespace: *namespace
   prune: true
   timeout: 5m0s
