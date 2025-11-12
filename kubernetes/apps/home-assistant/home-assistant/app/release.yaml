@@ -43,9 +43,6 @@ spec:
               repository: busybox
               tag: 1.36.1
             command: [ "/bin/sh", "-c", "[[ ! -e /config/configuration.yaml ]] && cp /tmp/config/configuration.yaml /config/  configuration.yaml" ]
-            volumeMounts:
-            - name: custom-config
-              mountPath: /tmp/config
     service:
       app:
         ports:
@@ -53,14 +50,13 @@ spec:
             appProtocol: kubernetes.io/wss
             port: 8123
         primary: true
-    volumes:
-      - custom-config:
-        configMap:
-          name: hass-config
-          items:
-            - key: config
-              path: configuration.yaml
     persistence:
+      custom-config:
+        enabled: true
+        type: configMap
+        name: hass-config
+        globalMounts:
+          - path: /tmp/config
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:

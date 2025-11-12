@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: hass-config
 data:
-  config: |
+  configuration.yaml: |
     # Load default config
     default_config:
 
