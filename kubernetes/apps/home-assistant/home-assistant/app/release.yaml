@@ -44,6 +44,7 @@ spec:
               tag: 1.36.1
             command: [ "/bin/sh", "-c", "if [[ ! -e /config/configuration.yaml ]]; then echo Moving the custom configuration in the PVC ; cp /tmp/config/configuration.yaml /config/configuration.yaml || exit 1; echo Configuration moved successfully ; fi ; echo Configuration file already in place ; exit 0" ]
           hacs-config:
+            dependsOn: hass-config
             image:
               repository: bash
               tag: 5.3.3
