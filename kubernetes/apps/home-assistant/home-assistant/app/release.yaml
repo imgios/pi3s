@@ -42,7 +42,7 @@ spec:
             image:
               repository: busybox
               tag: 1.36.1
-            command: [ "/bin/sh", "-c", "[[ ! -e /config/configuration.yaml ]] && cp /tmp/config/configuration.yaml /config/configuration.yaml || exit 1; exit 0" ]
+            command: [ "/bin/sh", "-c", "if [[ ! -e /config/configuration.yaml ]]; then cp /tmp/config/configuration.yaml /config/configuration.yaml || exit 1; fi; exit 0" ]
     service:
       app:
         ports:
