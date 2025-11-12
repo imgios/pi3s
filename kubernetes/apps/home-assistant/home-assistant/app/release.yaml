@@ -38,12 +38,12 @@ spec:
                 drop:
                   - ALL
           initContainers:
-          - name: hass-config
-            image: busybox:1.36.1
-            command: [ "/bin/sh", "-c", "[[ ! -e /config/configuration.yaml ]] && cp /tmp/config/configuration.yaml /config/configuration.yaml" ]
-            volumeMounts:
-            - name: custom-config
-              mountPath: /tmp/config
+            - name: hass-config
+              image: busybox:1.36.1
+              command: [ "/bin/sh", "-c", "[[ ! -e /config/configuration.yaml ]] && cp /tmp/config/configuration.yaml /config/  configuration.yaml" ]
+              volumeMounts:
+              - name: custom-config
+                mountPath: /tmp/config
     service:
       app:
         ports:
