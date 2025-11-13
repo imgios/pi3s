@@ -66,9 +66,13 @@ spec:
     ingress:
       librespeed:
         enabled: true
-        className: tailscale
+        className: traefik
+        annotations:
+          cert-manager.io/cluster-issuer: "homelab-ca-issuer"
+          cert-manager.io/subject-organizations: "imgios Homelab"
+          cert-manager.io/subject-countries: "Planet Earth"
         hosts:
-          - host: speed
+          - host: speed.homelab.local
             paths:
               - path: /
                 service:
@@ -76,4 +80,5 @@ spec:
                   port: http
         tls:
           - hosts:
-            - speed
+            - speed.homelab.local
+            secretName: hass-internal-tls
