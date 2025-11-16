@@ -80,7 +80,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "homelab-ca-issuer"
         hosts:
-          - host: hass.homelab.local
+          - host: hass.homelab.giosuesulipano.it
             paths:
               - path: /
                 service:
@@ -88,5 +88,5 @@ spec:
                   port: http
         tls:
           - hosts:
-            - hass.homelab.local
+            - hass.homelab.giosuesulipano.it
             secretName: hass-internal-tls

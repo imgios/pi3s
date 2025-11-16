@@ -30,5 +30,5 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
-      host: longhorn.homelab.local
+      host: longhorn.homelab.giosuesulipano.it
     

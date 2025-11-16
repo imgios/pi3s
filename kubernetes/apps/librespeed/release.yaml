@@ -72,7 +72,7 @@ spec:
           cert-manager.io/subject-organizations: "imgios Homelab"
           cert-manager.io/subject-countries: "Planet Earth"
         hosts:
-          - host: speed.homelab.local
+          - host: speed.homelab.giosuesulipano.it
             paths:
               - path: /
                 service:
@@ -80,5 +80,5 @@ spec:
                   port: http
         tls:
           - hosts:
-            - speed.homelab.local
+            - speed.homelab.giosuesulipano.it
             secretName: hass-internal-tls

@@ -30,7 +30,7 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - grafana.homelab.local
+          - grafana.homelab.giosuesulipano.it
       alerting:
         templates.yaml:
           apiVersion: 1
