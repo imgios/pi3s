@@ -4,3 +4,5 @@ namespace: external-secrets
 resources:
   - repository.yaml
   - release.yaml
+  - sops-secret-store.yaml
+  - sops-age.yaml
