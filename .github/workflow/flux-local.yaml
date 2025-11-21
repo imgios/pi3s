@@ -53,7 +53,7 @@ jobs:
             test
             --all-namespaces
             --enable-helm
-            --path /github/workspace/kubernetes/cluster
+            --path /github/workspace/kubernetes/pi3s
             --verbose
 
   diff:
@@ -101,8 +101,8 @@ jobs:
           args: >-
             diff ${{ matrix.resource }}
             --unified 6
-            --path /github/workspace/pull/kubernetes/cluster
-            --path-orig /github/workspace/default/kubernetes/cluster
+            --path /github/workspace/pull/kubernetes/pi3s
+            --path-orig /github/workspace/default/kubernetes/pi3s
             --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
             --limit-bytes 10000
             --all-namespaces
