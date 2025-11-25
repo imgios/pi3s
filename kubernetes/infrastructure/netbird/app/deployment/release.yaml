@@ -19,6 +19,7 @@ spec:
         enabled: true
         router:
           enabled: true
+          replicas: 2
       netbirdAPI:
         keyFromSecret: 
           name: "netbird-mgmt-api-key"
