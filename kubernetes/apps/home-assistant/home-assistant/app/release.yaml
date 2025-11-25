@@ -31,6 +31,11 @@ spec:
                 cpu: 100m
               limits:
                 memory: 2Gi
+            # Configure HA Community Store as soon as the container start
+            lifecycle:
+              postStart:
+                exec:
+                  command: [ "bash", "-c", "cd /config && wget -O - https://get.hacs.xyz | bash -" ]
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -43,12 +48,6 @@ spec:
               repository: busybox
               tag: 1.36.1
             command: [ "/bin/sh", "-c", "if [[ ! -e /config/configuration.yaml ]]; then echo Moving the custom configuration in the PVC ; cp /tmp/config/configuration.yaml /config/configuration.yaml || exit 1; echo Configuration moved successfully ; fi ; echo Configuration file already in place ; exit 0" ]
-          hacs-config:
-            dependsOn: hass-config
-            image:
-              repository: bash
-              tag: 5.3.3
-            command: [ "bash", "-c", "cd /config && wget -O - https://get.hacs.xyz | bash -" ]
     service:
       app:
         ports:
