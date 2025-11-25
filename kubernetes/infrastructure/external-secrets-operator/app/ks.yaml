@@ -22,3 +22,24 @@ spec:
   targetNamespace: *namespace
   prune: true
   timeout: 5m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app external-secrets-config
+  namespace: &namespace external-secrets
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: external-secrets
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: ./kubernetes/infrastructure/external-secrets-operator/app/config
+  targetNamespace: *namespace
+  prune: true
+  timeout: 5m0s
