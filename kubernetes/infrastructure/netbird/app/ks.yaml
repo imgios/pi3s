@@ -18,7 +18,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: ./kubernetes/apps/netbird/app/deployment
+  path: ./kubernetes/infrastructure/netbird/app/deployment
   targetNamespace: *namespace
   prune: true
   timeout: 5m0s
