@@ -4,6 +4,8 @@ kind: Kustomization
 metadata:
   name: &app netbird
   namespace: &namespace netbird
+  labels:
+    decrypt.homelab.local/type: sops
 spec:
   commonMetadata:
     labels:
