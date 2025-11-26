@@ -12,7 +12,11 @@ metadata:
   namespace: cert-manager
 spec:
   isCA: true
-  commonName: homelab-selfsigned-ca
+  commonName: *.homelab.giosuesulipano.it
+  dnsNames:
+    - "*.homelab.giosuesulipano.it"
+    - "*.apps.homelab.giosuesulipano.it"
+    - "*.infra.homelab.giosuesulipano.it"
   secretName: homelab-rootca-secret
   privateKey:
     algorithm: ECDSA
