@@ -80,6 +80,7 @@ spec:
         className: traefik
         annotations:
           cert-manager.io/cluster-issuer: "homelab-ca-issuer"
+          cert-manager.io/common-name: "hass.homelab.giosuesulipano.it"
         hosts:
           - host: hass.homelab.giosuesulipano.it
             paths:
