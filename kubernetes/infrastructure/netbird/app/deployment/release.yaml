@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
     name: netbird-operator
     namespace: netbird 
+    annotations:
+      reloader.stakater.com/auto: "true"
 spec:
     interval: 1h0m0s
     chart:
