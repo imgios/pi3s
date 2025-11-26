@@ -12,6 +12,7 @@ metadata:
   namespace: cert-manager
 spec:
   isCA: true
+  subject: "imgios's Homelab"
   commonName: "*.homelab.giosuesulipano.it"
   dnsNames:
     - "*.homelab.giosuesulipano.it"
