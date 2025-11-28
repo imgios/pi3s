@@ -1,5 +1,5 @@
 <h3 align="center">
-    <img src="https://i.ibb.co/HLjFmxb1/pie.png" alt="pie" border="0"><br/>
+    <img src="https://i.imgur.com/8NdrknO.png" alt="pie" border="0"><br/>
     <code>pi3s</code>
 </h3>
 
