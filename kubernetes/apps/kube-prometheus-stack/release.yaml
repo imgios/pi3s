@@ -38,6 +38,7 @@ spec:
             - name: "homelab_custom_templates"
               orgId: 1
               template: |
+                {{ `
                 {{ define "telegram.homelab.message" }}
                 {{ define "__alerts_list" -}}
                 {{ range . }}
@@ -85,3 +86,4 @@ spec:
                 <a href="{{ .ExternalURL }}">📲 Grafana</a>
                 {{- end -}}
                 {{ end }}
+                ` }}
