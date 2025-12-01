@@ -35,10 +35,11 @@ spec:
         templates.yaml:
           apiVersion: 1
           templates:
-            - name: telegram.message.homelab
+            - name: "Homelab Custom Templates"
               orgId: 1
               template: |
                 {{ `
+                {{ define "telegram.homelab.message" }}
                 {{ define "__alerts_list" -}}
                 {{ range . }}
                 {{if ne (index .Labels "alertname") "" -}}
@@ -84,4 +85,5 @@ spec:
 
                 <a href="{{ .ExternalURL }}">📲 Grafana</a>
                 {{- end -}}
+                {{ end }}
                 ` }}
