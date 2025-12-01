@@ -68,7 +68,7 @@ spec:
                 {{- end -}} {{- /* define __alerts_list */ -}}
 
                 {{ define "__telegram.title" -}}
-                {{ if ne (index .CommonLabels "severity") "" }} <u><b>P{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
+                {{ if ne (index .CommonLabels "severity") "" }} <u><b>{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
                 {{ if ne (index .CommonLabels "alertname") "" -}}
                     [{{ index .CommonLabels "alertname" }}]
                 {{- end -}}
