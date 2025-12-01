@@ -35,7 +35,7 @@ spec:
         templates.yaml:
           apiVersion: 1
           templates:
-            - name: "Homelab Custom Templates"
+            - name: "homelab_custom_templates"
               orgId: 1
               template: |
                 {{ `
