@@ -38,14 +38,13 @@ spec:
             - name: "homelab_custom_templates"
               orgId: 1
               template: |
-                {{ `
                 {{ define "telegram.homelab.message" }}
                 {{ define "__alerts_list" -}}
                 {{ range . }}
-                {{if ne (index .Labels "alertname") "" -}}
+                {{ if ne (index .Labels "alertname") "" -}}
                 {{ if eq .Status "firing" }}🔴{{ else }}🟢{{ end }}
                     {{- if ne (index .Labels "severity") "" -}}
-                        <u><b>P{{ index .Labels "severity" }}</b></u> {{ end -}}
+                        <u><b>{{ index .Labels "severity" }}</b></u> {{ end -}}
                 <b>{{ index .Labels "alertname" }}</b> 🕙 {{ .StartsAt.Format "15:04:05    🗓️ 2006-01-02" }}{{ end -}}
                 {{ if len .Annotations }}
                 <i>Annotations:</i>
@@ -86,4 +85,3 @@ spec:
                 <a href="{{ .ExternalURL }}">📲 Grafana</a>
                 {{- end -}}
                 {{ end }}
-                ` }}
