@@ -37,7 +37,7 @@ spec:
         templates.yaml:
           apiVersion: 1
           templates:
-            - name: telegram.message.homelab
+            - name: "Homelab Custom Templates"
               orgId: 1
               template: |
                 {{ `
@@ -68,22 +68,22 @@ spec:
                     <pre>--------</pre>
                 {{- end -}} {{- /* range */ -}}
                 {{- end -}} {{- /* define __alerts_list */ -}}
-
+                
                 {{ define "__telegram.title" -}}
                 {{ if ne (index .CommonLabels "severity") "" }} <u><b>{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
                 {{ if ne (index .CommonLabels "alertname") "" -}}
                     [{{ index .CommonLabels "alertname" }}]
                 {{- end -}}
                 {{- end -}}{{- /* define __telegram */ -}}
-
-                {{ define "telegram.message" }}
+                
+                {{ define "telegram.homelab.message" }}
                     {{ if gt (len .Alerts.Firing) 0 }}
                     🚨 <b>ALARM</b> (#{{ .Alerts.Firing | len }})
                     {{- template "__alerts_list" .Alerts.Firing }}{{ end -}}
                     {{ if gt (len .Alerts.Resolved) 0 }}
                     ✅ <b>RESOLVED</b>{{ template "__telegram.title" . }} (#{{ .Alerts.Resolved | len }})
                     {{- template "__alerts_list" .Alerts.Resolved }}{{ end }}
-
+                
                 <a href="{{ .ExternalURL }}">📲 Grafana</a>
                 {{- end -}}
                 ` }}
