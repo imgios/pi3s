@@ -26,6 +26,8 @@ spec:
   values:
     grafana:
       defaultDashboardsTimezone: "Europe/Rome"
+      admin:
+        existingSecret: grafana-admin-creds
       ingress:
         enabled: true
         ingressClassName: traefik
