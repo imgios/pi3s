@@ -1,0 +1,35 @@
+grafana:
+  alerting:
+    contactpoints.yaml:
+      secret:
+        apiVersion: 1
+        contactPoints:
+          - ordId: 1
+            name: telegram-homelab-group
+            receivers:
+              - uid: bf5sgk47kj85cb
+                type: telegram
+                settings:
+                  bottoken: ENC[AES256_GCM,data:HrG7sbhupi2dmh+mJ6PatNbZAZpJqDfJjAvcJ/6IWUP1E43Fg22hdAXcu1XW6A==,iv:kI+NSLo0VXbPE/X6PIPnS45l/S6yz9yaEt/c8Bl6rRQ=,tag:6kgnFt4NrFmfvyqKer1Ang==,type:str]
+                  chatid: ENC[AES256_GCM,data:/b/92FvJqZqpDQ0=,iv:ZRm4V8ZmQqf3+Gm/ED/XHwCWu36gaZ+Sq5s9mUF54Es=,tag:/CeJtCES17pLaLRrGJ/tlA==,type:str]
+                  disable_notification: false
+                  disable_web_page_preview: false
+                  message: '{{ template "telegram.homelab.message" . }}'
+                  parse_mode: HTML
+                  protect_content: false
+                disableResolveMessage: false
+sops:
+  age:
+    - recipient: age185tgcntd96x8y5kjse7w5snnq3ml37pzvtjnrmqudw9dxsa8p99q9xmq5v
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXbFJ4RkRNZE5TTXU4Z1JY
+        WExibkpZdnJscUYwL2JCclNmYUc1ajRXdmtnCjMwQkxvZkNFa2dDcDN1QmRkSmta
+        NFo0SmNlcnlUeHMzQU1wSDJJYmtpMmMKLS0tIHN4eW8zYWI2MGZjV205RE03VDZB
+        eXYxUlZuZm9iN01ZWmtIbitrUVlxU1kKanrtjxNkGM8oXG3iREtEWl8DytjGAF2a
+        zkbavqQv1XPsHtLJYiXvtkah7xK8LG3UwXSRV+uyYeAnfAtSIggENg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-12-04T09:43:10Z"
+  mac: ENC[AES256_GCM,data:PB2tga/DmTFmFBzSuVR+yY7fNguTMgt8ncJmcyhCn0sfQ+MMLTWUo7PfxfkRD6Tyj1C+54AmFBs4z2kdJYhwD2FPPOXe1zBlYk7JJNKfxy/TenVusD+nq7ks2+iqFZewdIKQicl0IByls+0KaBjmaJWgC1aay/UxgnOy+Kvl6Ws=,iv:qrXpF3yxiwqnEG33FkurPTuPXY8qZ0hDSluBS0BsdGQ=,tag:o1BmuhjKMCc6KuzBksoPpg==,type:str]
+  encrypted_regex: ^(bottoken|chatid)$
+  version: 3.11.0

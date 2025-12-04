@@ -27,3 +27,6 @@ spec:
     - kind: ConfigMap
       name: general-values
       valuesKey: general.yaml
+    - kind: Secret
+      name: contactpoints-values
+      valuesKey: contactpoints.yaml
