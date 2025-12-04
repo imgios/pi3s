@@ -15,3 +15,5 @@ secretGenerator:
   - name: contactpoints-values
     files:
       - ./values/contactpoints.yaml
+generatorOptions:
+  disableNameSuffixHash: true
