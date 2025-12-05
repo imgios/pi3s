@@ -7,3 +7,13 @@ resources:
   - secret.yaml
   - release.yaml
   #- grafana-tailscale-ingress.yaml
+configMapGenerator:
+  - name: general-values
+    files:
+      - ./values/general.yaml
+secretGenerator:
+  - name: contactpoints-values
+    files:
+      - ./values/contactpoints.yaml
+generatorOptions:
+  disableNameSuffixHash: true

@@ -23,67 +23,10 @@ spec:
   upgrade:
     remediation:
       retries: 10
-  values:
-    grafana:
-      defaultDashboardsTimezone: "Europe/Rome"
-      admin:
-        existingSecret: grafana-admin-creds
-      ingress:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - grafana.homelab.giosuesulipano.it
-      alerting:
-        templates.yaml:
-          apiVersion: 1
-          templates:
-            - name: "Homelab Custom Templates"
-              orgId: 1
-              template: |
-                {{ `
-                {{ define "__alerts_list" -}}
-                {{ range . }}
-                {{if ne (index .Labels "alertname") "" -}}
-                {{ if eq .Status "firing" }}🔴{{ else }}🟢{{ end }}
-                    {{- if ne (index .Labels "severity") "" -}}
-                        <u><b>{{ index .Labels "severity" }}</b></u> {{ end -}}
-                <b>{{ index .Labels "alertname" }}</b> 🕙 {{ .StartsAt.Format "15:04:05    🗓️ 2006-01-02" }}{{ end -}}
-                {{ if len .Annotations }}
-                <i>Annotations:</i>
-                    {{ range .Annotations.SortedPairs -}}
-                    - {{ .Name }}: {{ .Value }}
-                    {{ end -}}
-                {{ end }}
-                {{ if len .Labels -}}
-                <i>Labels:</i>
-                    {{ range .Labels.SortedPairs -}}
-                    - {{ .Name }}: {{ .Value }}
-                    {{ end -}}
-                {{ end }}
-                <i>Value:</i> <pre>{{ .ValueString }}</pre>
-                    {{- if gt (len .GeneratorURL) 0 }}<a href="{{ .GeneratorURL }}">source</a>  |  {{ end }}
-                    {{- if gt (len .SilenceURL) 0 }}<a href="{{ .SilenceURL }}">🔕 silence</a>  |  {{ end }}
-                    {{- if gt (len .DashboardURL) 0 }}📁 <a href="{{ .DashboardURL }}">dashboard</a>  |  {{ end }}
-                    {{- if gt (len .PanelURL) 0 }}<a href="{{ .PanelURL }}">panel</a> {{- end -}}
-                    <pre>--------</pre>
-                {{- end -}} {{- /* range */ -}}
-                {{- end -}} {{- /* define __alerts_list */ -}}
-                
-                {{ define "__telegram.title" -}}
-                {{ if ne (index .CommonLabels "severity") "" }} <u><b>{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
-                {{ if ne (index .CommonLabels "alertname") "" -}}
-                    [{{ index .CommonLabels "alertname" }}]
-                {{- end -}}
-                {{- end -}}{{- /* define __telegram */ -}}
-                
-                {{ define "telegram.homelab.message" }}
-                    {{ if gt (len .Alerts.Firing) 0 }}
-                    🚨 <b>ALARM</b> (#{{ .Alerts.Firing | len }})
-                    {{- template "__alerts_list" .Alerts.Firing }}{{ end -}}
-                    {{ if gt (len .Alerts.Resolved) 0 }}
-                    ✅ <b>RESOLVED</b>{{ template "__telegram.title" . }} (#{{ .Alerts.Resolved | len }})
-                    {{- template "__alerts_list" .Alerts.Resolved }}{{ end }}
-                
-                <a href="{{ .ExternalURL }}">📲 Grafana</a>
-                {{- end -}}
-                ` }}
+  valuesFrom:
+    - kind: ConfigMap
+      name: general-values
+      valuesKey: general.yaml
+    - kind: Secret
+      name: contactpoints-values
+      valuesKey: contactpoints.yaml
