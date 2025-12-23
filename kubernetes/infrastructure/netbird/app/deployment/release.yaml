@@ -7,12 +7,12 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   interval: 1h0m0s
-    chart:
-      spec:
-        chart: kubernetes-operator
-        sourceRef:
-          kind: HelmRepository
-          name: netbird-helmrepo 
+  chart:
+    spec:
+      chart: kubernetes-operator
+      sourceRef:
+        kind: HelmRepository
+        name: netbird-helmrepo 
   valuesFrom:
     - kind: Secret
       name: values
