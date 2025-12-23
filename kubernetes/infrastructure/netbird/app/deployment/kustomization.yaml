@@ -4,3 +4,9 @@ resources:
   - repository.yaml
   - release.yaml
   - secret.yaml
+secretGenerator:
+  - name: values
+    files:
+      - values.yaml
+generatorOptions:
+  disableNameSuffixHash: true

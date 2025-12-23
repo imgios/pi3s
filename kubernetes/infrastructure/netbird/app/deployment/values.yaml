@@ -1,0 +1,27 @@
+managementURL: ENC[AES256_GCM,data:khcGt47Xmd3PAubic1Wdn9DXM3w=,iv:loF4IMs2nzq1reRlD/KzUDzRGGN2gqTJnSFlikkm4pI=,tag:VBXXNHBzboabZEws5STBAg==,type:str]
+cluster:
+    name: pi3s
+ingress:
+    enabled: true
+    router:
+        enabled: true
+        replicas: 2
+netbirdAPI:
+    keyFromSecret:
+        name: netbird-mgmt-api-key
+        key: NB_API_KEY
+sops:
+    age:
+        - recipient: age185tgcntd96x8y5kjse7w5snnq3ml37pzvtjnrmqudw9dxsa8p99q9xmq5v
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiODNtd0dPdmN1NitUa1NJ
+            dU1wMTdxOFFMWHV1ZnVEWmFNQnByKzNoYVNRClZpREdkSVRCelpIM3k0ZnNkWkor
+            NkVqRU55aDlaWFVZQk5NN0ppb3BJWTgKLS0tIFNDSnZHeGtEM1RQV282a0pzSlgv
+            NUpNVEZsSExhVkJxMXl6b1NKRFRERHMKbKe/7GFXeMKGq7wTwRxXN4z38pcqM40P
+            ljEiwxjGQ2vlDDFKfrNegZjpmCqWZDt9or3kkNwxmVaMDJ0F5jDj5Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-23T09:55:08Z"
+    mac: ENC[AES256_GCM,data:2OdwKgIYJj/NY2A/iyLq9Ks3Mp211MEIypghKkxgKIbxDhvEDHPTOA2y4tqvNG/ag4cZus46fwqZgp6BICiaJQXb6ohIxIYMx1WPE/mqO01DJA635gnsdI6/H2vANra7nOHjfx3gPeXvhy8tjRHocVslcf6roRolZzgcmMr2i6g=,iv:UiDjVLeZJ5A7NLJ6Vtvgg5wXN+2TqN/XZnEW1E+IQD0=,tag:xH7FfjaPq+lJH0MuYFDtUg==,type:str]
+    encrypted_regex: ^(managementURL)$
+    version: 3.11.0
