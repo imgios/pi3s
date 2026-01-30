@@ -46,6 +46,7 @@ spec:
               capabilities:
                 drop:
                   - ALL
+    service:
       app:
         ports:
           http:
