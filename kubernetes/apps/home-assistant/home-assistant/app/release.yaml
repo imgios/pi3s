@@ -28,6 +28,8 @@ spec:
               tag: 2025.11.1
             env:
               TZ: Europe/Rome
+              HASS_HTTP_TRUSTED_PROXY_1: 192.168.1.0/24
+              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             resources:
               requests:
                 cpu: 100m
@@ -44,13 +46,6 @@ spec:
               capabilities:
                 drop:
                   - ALL
-        initContainers:
-          hass-config:
-            image:
-              repository: busybox
-              tag: 1.36.1
-            command: [ "/bin/sh", "-c", "if [[ ! -e /config/configuration.yaml ]]; then echo Moving the custom configuration in the PVC ; cp /tmp/config/configuration.yaml /config/configuration.yaml || exit 1; echo Configuration moved successfully ; fi ; echo Configuration file already in place ; exit 0" ]
-    service:
       app:
         ports:
           http:
@@ -58,12 +53,6 @@ spec:
             port: 8123
         primary: true
     persistence:
-      custom-config:
-        enabled: true
-        type: configMap
-        name: hass-config
-        globalMounts:
-          - path: /tmp/config
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
