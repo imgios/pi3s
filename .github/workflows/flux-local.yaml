@@ -2,6 +2,8 @@ name: Flux Local
 
 on:
   pull_request:
+    paths:
+      - 'kubernetes/**'
     branches:
       - main
 
@@ -141,5 +143,6 @@ jobs:
 
       - name: All jobs passed or skipped?
         if: ${{ !(contains(needs.*.result, 'failure')) }}
+
 
         run: echo "All jobs passed or skipped" && echo "${{ toJSON(needs.*.result) }}"
