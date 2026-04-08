@@ -3,6 +3,7 @@
   "extends": ["config:base"],
   "timezone": "Europe/Rome",
   "branchPrefix": "renovate/update/",
+  "dependencyDashboardTitle": "Dependency Dashboard 🤖",
   "prConcurrentLimit": 10,
   "automergeStrategy": "squash",
   "semanticCommits": "enabled",
