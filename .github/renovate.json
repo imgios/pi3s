@@ -1,0 +1,122 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "timezone": "Europe/Rome",
+  "branchPrefix": "renovate/update/",
+  "prConcurrentLimit": 10,
+  "automergeStrategy": "squash",
+  "semanticCommits": "enabled",
+  "separateMajorMinor": true,
+  "regexManagers": [
+    {
+      "description": "HelmRelease values: Container images with repository + tag on separate lines",
+      "fileMatch": [
+        "(^|/)apps/.*(helm-)?release\\.ya?ml$",
+        "(^|/)infrastructure/.*(helm-)?release\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "repository:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*tag:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
+      ],
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "{{{depName}}}"
+    },
+    {
+      "description": "Container images: match single-line image",
+      "fileMatch": [
+        "(^|/)apps/.*\\.ya?ml$",
+        "(^|/)infrastructure/.*\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "image:\\s*['\"]?(?<depName>(?:[^/:\\s'\"]+/)?[^:\\s'\"]+)['\"]?\\s*:\\s*['\"]?(?<currentValue>[^\\s'\"]+)['\"]?"
+      ],
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "{{{depName}}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Global: Disable rate limiting for all updates",
+      "matchDatasources": ["docker", "helm", "github-tags", "github-releases"],
+      "rangeStrategy": "auto"
+    },
+    {
+      "description": "Container: Default Container images commit/PR format",
+      "matchDatasources": ["docker"],
+      "matchManagers": ["regex"],
+      "commitMessagePrefix": "chore(images): update",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
+    },
+    {
+      "description": "Container: home-assistant — automerge up to minor",
+      "matchPackageNames": [
+        "ghcr.io/home-operations/home-assistant",
+        "home-operations/home-assistant"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "labels": ["safe-update"]
+    },
+    {
+      "description": "Container: librespeed — automerge up to minor",
+      "matchPackageNames": [
+        "ghcr.io/librespeed/speedtest",
+        "librespeed/speedtest"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "labels": ["safe-update"]
+    },
+    {
+      "description": "Container: Fallback for other Container images — needs review",
+      "matchDatasources": ["docker"],
+      "automerge": false,
+      "labels": ["needs-review"]
+    },
+    {
+      "description": "Helm Chart: Default commit/PR format",
+      "matchDatasources": ["helm"],
+      "matchManagers": ["helm"],
+      "commitMessagePrefix": "chore(helm): update",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
+    },
+    {
+      "description": "Helm Chart: kube-prometheus-stack — automerge up to minor",
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["kube-prometheus-stack"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "labels": ["safe-update"]
+    },
+    {
+      "description": "Helm Chart: Other Helm charts — no automerge, needs review",
+      "matchDatasources": ["helm"],
+      "automerge": false,
+      "labels": ["needs-review"]
+    },
+    {
+      "description": "GitHub Actions: Default commit/PR format",
+      "matchDatasources": ["github-tags", "github-releases"],
+      "matchManagers": ["github-actions"],
+      "commitMessagePrefix": "chore(actions): update",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
+      "automerge": false,
+      "labels": ["needs-review"]
+    },
+    {
+      "description": "Kustomize: Default commit/PR format",
+      "matchDatasources": ["github-tags", "github-releases"],
+      "matchManagers": ["kustomize"],
+      "commitMessagePrefix": "chore(kustomize): update",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
+      "automerge": false,
+      "labels": ["needs-review"]
+    }
+  ]
+}
