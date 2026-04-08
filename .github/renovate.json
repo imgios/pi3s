@@ -1,34 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "timezone": "Europe/Rome",
   "branchPrefix": "renovate/update/",
   "prConcurrentLimit": 10,
   "automergeStrategy": "squash",
   "semanticCommits": "enabled",
   "separateMajorMinor": true,
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "description": "HelmRelease values: Container images with repository + tag on separate lines",
-      "fileMatch": [
-        "(^|/)apps/.*(helm-)?release\\.ya?ml$",
-        "(^|/)infrastructure/.*(helm-)?release\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "repository:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*tag:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
-      ],
+      "managerFilePatterns": ["/(^|/)apps/.*(helm-)?release\.ya?ml$/", "/(^|/)infrastructure/.*(helm-)?release\.ya?ml$/"],
+      "matchStrings": ["repository:\s*['\"]?(?<depName>[^'\"\s]+)['\"]?\s*\n(?:[^\n]*\n){0,3}?\s*tag:\s*['\"]?(?<currentValue>[^'\"\s@]+)"],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "{{{depName}}}"
     },
     {
+      "customType": "regex",
       "description": "Container images: match single-line image",
-      "fileMatch": [
-        "(^|/)apps/.*\\.ya?ml$",
-        "(^|/)infrastructure/.*\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "image:\\s*['\"]?(?<depName>(?:[^/:\\s'\"]+/)?[^:\\s'\"]+)['\"]?\\s*:\\s*['\"]?(?<currentValue>[^\\s'\"]+)['\"]?"
-      ],
+      "managerFilePatterns": ["/(^|/)apps/.*\.ya?ml$/", "/(^|/)infrastructure/.*\.ya?ml$/"],
+      "matchStrings": ["image:\s*['\"]?(?<depName>(?:[^/:\s'\"]+/)?[^:\s'\"]+)['\"]?\s*:\s*['\"]?(?<currentValue>[^\s'\"]+)['\"]?"],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "{{{depName}}}"
     }
@@ -42,7 +34,7 @@
     {
       "description": "Container: Default Container images commit/PR format",
       "matchDatasources": ["docker"],
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "commitMessagePrefix": "chore(images): update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
