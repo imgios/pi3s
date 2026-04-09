@@ -53,7 +53,7 @@
 
   "commitMessageAction": "update",
   "commitMessageTopic": "{{depName}}",
-  "commitMessageExtra": "from {{currentVersion}} to {{newVersion}}",
+  "commitMessageExtra": "({{currentVersion}} -> {{newVersion}})",
   "commitMessageSuffix": "",
-  "prTitle": "chore(deps): update {{depName}} from {{currentVersion}} to {{newVersion}}"
+  "prTitle": "chore(deps): update {{depName}} ({{currentVersion}} -> {{newVersion}})"
 }
