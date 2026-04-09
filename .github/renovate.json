@@ -44,7 +44,7 @@
     }
   ],
 
-  "commitMessagePrefix": "chore(deps):"
+  "commitMessagePrefix": "chore(deps):",
   "commitMessageAction": "update",
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "({{currentVersion}} -> {{newVersion}})",
