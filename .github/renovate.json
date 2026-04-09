@@ -12,8 +12,8 @@
     {
       "description": "HelmRelease values: Container images with repository + tag on separate lines",
       "fileMatch": [
-        "(^|/)apps/.*(helm-)?release\\.ya?ml$",
-        "(^|/)infrastructure/.*(helm-)?release\\.ya?ml$"
+        "(^|/)kubernetes/apps/.*(helm-)?release\\.ya?ml$",
+        "(^|/)kubernetes/infrastructure/.*(helm-)?release\\.ya?ml$"
       ],
       "matchStrings": [
         "repository:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*tag:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
