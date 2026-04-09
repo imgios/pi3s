@@ -30,7 +30,7 @@
       "matchStrings": [
         "chart:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*version:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
       ],
-      "datasourceTemplate": "helm",
+      "datasourceTemplate": "helmchart",
       "packageNameTemplate": "{{{depName}}}"
     },
     {
