@@ -2,9 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    ":dependencyDashboard",
-    ":pinDigests",
-    ":separatePatchReleases"
   ],
   "timezone": "Europe/Rome",
   "dependencyDashboardTitle": "Dependency Dashboard 🤖",
@@ -16,6 +13,7 @@
   "branchPrefix": "renovate/update/",
   "rebaseWhen": "behind-base-branch",
   "commitMessagePrefix": "chore(deps):",
+  "pinDigests": "true",
   "ignorePaths": [
     "**/*.md",
     "**/README*"
