@@ -12,25 +12,13 @@
     {
       "description": "HelmRelease values: Container images with repository + tag on separate lines",
       "fileMatch": [
-        "(^|/)kubernetes/.+values\\.ya?ml$",
-        "(^|/)kubernetes/.+release\\.ya?ml$"
+        "(^|/)kubernetes/apps/.*(helm-)?release\\.ya?ml$",
+        "(^|/)kubernetes/infrastructure/.*(helm-)?release\\.ya?ml$"
       ],
       "matchStrings": [
         "repository:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*tag:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
       ],
       "datasourceTemplate": "docker",
-      "packageNameTemplate": "{{{depName}}}"
-    },
-    {
-      "description": "HelmRelease values: Helm Charts with repository + version on separate lines",
-      "fileMatch": [
-        "(^|/)kubernetes/.+values\\.ya?ml$",
-        "(^|/)kubernetes/.+release\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "chart:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*version:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
-      ],
-      "datasourceTemplate": "helmchart",
       "packageNameTemplate": "{{{depName}}}"
     },
     {
