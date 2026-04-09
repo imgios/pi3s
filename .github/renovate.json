@@ -36,7 +36,7 @@
   ],
   "flux": {
     "fileMatch": ["(^|/)kubernetes/(apps|infrastructure)/.+\\.ya?ml$"]
-  }
+  },
   "packageRules": [
     {
       "description": "Global: Disable rate limiting for all updates",
