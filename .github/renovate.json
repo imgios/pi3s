@@ -1,123 +1,63 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": [
+    "config:base",
+    ":dependencyDashboard",
+    ":pinDigests",
+    ":separatePatchReleases"
+  ],
   "timezone": "Europe/Rome",
-  "branchPrefix": "renovate/update/",
   "dependencyDashboardTitle": "Dependency Dashboard 🤖",
+  "prHourlyLimit": 5,
   "prConcurrentLimit": 10,
   "automergeStrategy": "squash",
   "semanticCommits": "enabled",
   "separateMajorMinor": true,
-  "regexManagers": [
-    {
-      "description": "HelmRelease values: Container images with repository + tag on separate lines",
-      "fileMatch": [
-        "(^|/)kubernetes/apps/.*(helm-)?release\\.ya?ml$",
-        "(^|/)kubernetes/infrastructure/.*(helm-)?release\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "repository:\\s*['\"]?(?<depName>[^'\"\\s]+)['\"]?\\s*\\n(?:[^\\n]*\\n){0,3}?\\s*tag:\\s*['\"]?(?<currentValue>[^'\"\\s@]+)"
-      ],
-      "datasourceTemplate": "docker",
-      "packageNameTemplate": "{{{depName}}}"
-    },
-    {
-      "description": "Container images: match single-line image",
-      "fileMatch": [
-        "(^|/)kubernetes/apps/.*\\.ya?ml$",
-        "(^|/)kubernetes/infrastructure/.*\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "image:\\s*['\"]?(?<depName>(?:[^/:\\s'\"]+/)?[^:\\s'\"]+)['\"]?\\s*:\\s*['\"]?(?<currentValue>[^\\s'\"]+)['\"]?"
-      ],
-      "datasourceTemplate": "docker",
-      "packageNameTemplate": "{{{depName}}}"
-    }
+  "branchPrefix": "renovate/update/",
+  "rebaseWhen": "behind-base-branch",
+  "commitMessagePrefix": "chore(deps):",
+  "ignorePaths": [
+    "**/*.md",
+    "**/README*"
   ],
+  "kubernetes": {
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
+  },
+  "flux": {
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
+  },
+  "helm-values": {
+    "fileMatch": [
+      "(^|/)kubernetes/.+values\\.ya?ml$",
+       "(^|/)kubernetes/.+release\\.ya?ml$"
+    ]
+  },
   "packageRules": [
     {
-      "description": "Global: Disable rate limiting for all updates",
-      "matchDatasources": ["docker", "helm", "github-tags", "github-releases"],
-      "rangeStrategy": "auto"
+      "description": "Group all Kubernetes image updates",
+      "matchManagers": ["kubernetes"],
+      "groupName": "k8s images"
     },
     {
-      "description": "Container: Default Container images commit/PR format",
-      "matchDatasources": ["docker"],
-      "matchManagers": ["regex"],
-      "commitMessagePrefix": "chore(images):",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
+      "description": "Separate infrastructure from apps",
+      "matchPaths": ["kubernetes/infrastructure/**"],
+      "groupName": "infrastructure"
     },
     {
-      "description": "Container: home-assistant — automerge up to minor",
-      "matchPackageNames": [
-        "ghcr.io/home-operations/home-assistant",
-        "home-operations/home-assistant"
-      ],
-      "matchUpdateTypes": ["minor", "patch"],
+      "description": "Separate apps updates",
+      "matchPaths": ["kubernetes/apps/**"],
+      "groupName": "apps"
+    },
+    {
+      "description": "Automerge safe updates",
+      "matchUpdateTypes": ["patch", "digest"],
       "automerge": true,
-      "automergeType": "pr",
-      "labels": ["safe-update"]
+      "automergeType": "pr"
     },
     {
-      "description": "Container: librespeed — automerge up to minor",
-      "matchPackageNames": [
-        "ghcr.io/librespeed/speedtest",
-        "librespeed/speedtest"
-      ],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "pr",
-      "labels": ["safe-update"]
-    },
-    {
-      "description": "Container: Fallback for other Container images — needs review",
-      "matchDatasources": ["docker"],
-      "automerge": false,
-      "labels": ["needs-review"]
-    },
-    {
-      "description": "Helm Chart: Default commit/PR format",
-      "matchDatasources": ["helm"],
-      "matchManagers": ["helm"],
-      "commitMessagePrefix": "chore(helm):",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
-    },
-    {
-      "description": "Helm Chart: kube-prometheus-stack — automerge up to minor",
-      "matchDatasources": ["helm"],
-      "matchPackageNames": ["kube-prometheus-stack"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "pr",
-      "labels": ["safe-update"]
-    },
-    {
-      "description": "Helm Chart: Other Helm charts — no automerge, needs review",
-      "matchDatasources": ["helm"],
-      "automerge": false,
-      "labels": ["needs-review"]
-    },
-    {
-      "description": "GitHub Actions: Default commit/PR format",
-      "matchDatasources": ["github-tags", "github-releases"],
-      "matchManagers": ["github-actions"],
-      "commitMessagePrefix": "chore(actions):",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
-      "automerge": false,
-      "labels": ["needs-review"]
-    },
-    {
-      "description": "Kustomize: Default commit/PR format",
-      "matchDatasources": ["github-tags", "github-releases"],
-      "matchManagers": ["kustomize"],
-      "commitMessagePrefix": "chore(kustomize):",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
-      "automerge": false,
-      "labels": ["needs-review"]
+      "description": "Delay non-patch updates for stability",
+      "matchUpdateTypes": ["minor", "major"],
+      "stabilityDays": 3
     }
   ]
 }
