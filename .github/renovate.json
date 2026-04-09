@@ -43,6 +43,7 @@
       "description": "Automerge safe updates",
       "matchUpdateTypes": ["patch", "digest"],
       "automerge": true
+      "labels": ["safe-update"]
     },
     {
       "description": "Delay non-patch updates for stability",
@@ -55,5 +56,6 @@
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "({{currentVersion}} -> {{newVersion}})",
   "commitMessageSuffix": "",
+  "labels": ["needs-review"]
   "prTitle": "chore(deps): update {{depName}} ({{currentVersion}} -> {{newVersion}})"
 }
