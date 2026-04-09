@@ -1,61 +1,60 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
   "extends": [
-    "config:base",
+    "config:base"
   ],
+
   "timezone": "Europe/Rome",
   "dependencyDashboardTitle": "Dependency Dashboard 🤖",
   "prHourlyLimit": 5,
   "prConcurrentLimit": 10,
   "automergeStrategy": "squash",
+  "automergeType": "pr",
   "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
   "separateMajorMinor": true,
   "branchPrefix": "renovate/update/",
   "rebaseWhen": "behind-base-branch",
   "commitMessagePrefix": "chore(deps):",
-  "pinDigests": "true",
+  "pinDigests": true,
   "ignorePaths": [
     "**/*.md",
     "**/README*"
   ],
+
   "kubernetes": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
   },
+
   "flux": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
   },
+
   "helm-values": {
     "fileMatch": [
       "(^|/)kubernetes/.+values\\.ya?ml$",
-       "(^|/)kubernetes/.+release\\.ya?ml$"
+      "(^|/)kubernetes/.+release\\.ya?ml$"
     ]
   },
+
   "packageRules": [
-    {
-      "description": "Group all Kubernetes image updates",
-      "matchManagers": ["kubernetes"],
-      "groupName": "k8s images"
-    },
-    {
-      "description": "Separate infrastructure from apps",
-      "matchPaths": ["kubernetes/infrastructure/**"],
-      "groupName": "infrastructure"
-    },
-    {
-      "description": "Separate apps updates",
-      "matchPaths": ["kubernetes/apps/**"],
-      "groupName": "apps"
-    },
     {
       "description": "Automerge safe updates",
       "matchUpdateTypes": ["patch", "digest"],
-      "automerge": true,
-      "automergeType": "pr"
+      "automerge": true
     },
     {
       "description": "Delay non-patch updates for stability",
       "matchUpdateTypes": ["minor", "major"],
       "stabilityDays": 3
     }
-  ]
+  ],
+
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "from {{currentVersion}} to {{newVersion}}",
+  "commitMessageSuffix": "",
+  "prTitle": "chore(deps): update {{depName}} from {{currentVersion}} to {{newVersion}}"
 }
