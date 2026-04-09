@@ -52,10 +52,9 @@
     }
   ],
 
+  "commitMessagePrefix": "chore(deps):"
   "commitMessageAction": "update",
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "({{currentVersion}} -> {{newVersion}})",
-  "commitMessageSuffix": "",
-  "labels": ["needs-review"],
-  "prTitle": "chore(deps): update {{depName}} ({{currentVersion}} -> {{newVersion}})"
+  "labels": ["needs-review"]
 }
