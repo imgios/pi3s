@@ -18,7 +18,6 @@
   "branchPrefix": "renovate/update/",
   "rebaseWhen": "behind-base-branch",
   "commitMessagePrefix": "chore(deps):",
-  "pinDigests": true,
   "ignorePaths": [
     "**/*.md",
     "**/README*"
