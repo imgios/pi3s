@@ -24,8 +24,8 @@
     {
       "description": "Container images: match single-line image",
       "fileMatch": [
-        "(^|/)apps/.*\\.ya?ml$",
-        "(^|/)infrastructure/.*\\.ya?ml$"
+        "(^|/)kubernetes/apps/.*\\.ya?ml$",
+        "(^|/)kubernetes/infrastructure/.*\\.ya?ml$"
       ],
       "matchStrings": [
         "image:\\s*['\"]?(?<depName>(?:[^/:\\s'\"]+/)?[^:\\s'\"]+)['\"]?\\s*:\\s*['\"]?(?<currentValue>[^\\s'\"]+)['\"]?"
