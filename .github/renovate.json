@@ -42,7 +42,7 @@
     {
       "description": "Automerge safe updates",
       "matchUpdateTypes": ["patch", "digest"],
-      "automerge": true
+      "automerge": true,
       "labels": ["safe-update"]
     },
     {
@@ -56,6 +56,6 @@
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "({{currentVersion}} -> {{newVersion}})",
   "commitMessageSuffix": "",
-  "labels": ["needs-review"]
+  "labels": ["needs-review"],
   "prTitle": "chore(deps): update {{depName}} ({{currentVersion}} -> {{newVersion}})"
 }
