@@ -23,14 +23,6 @@
     "**/README*"
   ],
 
-  "kubernetes": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
-  },
-
-  "flux": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
-  },
-
   "helm-values": {
     "fileMatch": [
       "(^|/)kubernetes/.+values\\.ya?ml$",
