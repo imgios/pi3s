@@ -49,7 +49,8 @@
       "matchManagers": ["regex"],
       "commitMessagePrefix": "chore(images):",
       "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
+      "labels": ["area/kubernetes"]
     },
     {
       "description": "Container: home-assistant — automerge up to minor",
@@ -60,7 +61,7 @@
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr",
-      "labels": ["safe-update"]
+      "labels": ["safe-update", "area/kubernetes"]
     },
     {
       "description": "Container: librespeed — automerge up to minor",
@@ -71,13 +72,13 @@
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr",
-      "labels": ["safe-update"]
+      "labels": ["safe-update", "area/kubernetes"]
     },
     {
       "description": "Container: Fallback for other Container images — needs review",
       "matchDatasources": ["docker"],
       "automerge": false,
-      "labels": ["needs-review"]
+      "labels": ["needs-review", "area/kubernetes"]
     },
     {
       "description": "Helm Chart: Default commit/PR format",
@@ -85,7 +86,8 @@
       "matchManagers": ["helm"],
       "commitMessagePrefix": "chore(helm):",
       "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "({{currentValue}} -> {{newValue}})"
+      "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
+      "labels": ["area/kubernetes"]
     },
     {
       "description": "Helm Chart: kube-prometheus-stack — automerge up to minor",
@@ -94,13 +96,13 @@
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr",
-      "labels": ["safe-update"]
+      "labels": ["safe-update", "area/kubernetes"]
     },
     {
       "description": "Helm Chart: Other Helm charts — no automerge, needs review",
       "matchDatasources": ["helm"],
       "automerge": false,
-      "labels": ["needs-review"]
+      "labels": ["needs-review", "area/kubernetes"]
     },
     {
       "description": "GitHub Actions: Default commit/PR format",
@@ -110,7 +112,7 @@
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
       "automerge": false,
-      "labels": ["needs-review"]
+      "labels": ["needs-review", "area/github"]
     },
     {
       "description": "Kustomize: Default commit/PR format",
@@ -120,7 +122,7 @@
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "({{currentValue}} -> {{newValue}})",
       "automerge": false,
-      "labels": ["needs-review"]
+      "labels": ["needs-review", "area/kubernetes"]
     }
   ]
 }
