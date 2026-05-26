@@ -50,7 +50,6 @@ spec:
       app:
         ports:
           http:
-            appProtocol: kubernetes.io/wss
             port: 8123
         primary: true
     persistence:
